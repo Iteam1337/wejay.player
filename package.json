@@ -1,0 +1,27 @@
+{
+  "name": "wejay.player",
+  "version": "0.0.1",
+  "description": "The player component of wejay",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Iteam1337/wejay.player.git"
+  },
+  "keywords": [
+    "wejay",
+    "spotify",
+    "music"
+  ],
+  "author": "Johan Öbrink <johan.obrink@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Iteam1337/wejay.player/issues"
+  },
+  "homepage": "https://github.com/Iteam1337/wejay.player",
+  "dependencies": {
+    "node-spotify": "^0.6.0"
+  }
+}
