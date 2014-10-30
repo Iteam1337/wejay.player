@@ -32,10 +32,10 @@ Create an .env file in app root and add your credentials:
 SPOTIFY_LOGIN=[your username]
 SPOTIFY_PASSWORD=[your password]
 ```
-Run with ```node index.js```
+Run with ```node app```
 
 ####Production
-Run with ```SPOTIFY_USERNAME=[your username] SPOTIFY_PASSWORD=[your password] node index.js```
+Run with ```SPOTIFY_USERNAME=[your username] SPOTIFY_PASSWORD=[your password] node app```
 
 
 The MIT License (MIT)
