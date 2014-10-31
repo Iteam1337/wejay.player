@@ -29,7 +29,7 @@ Download key as [Binary] and save it as ```spotify_appkey.key``` in app root
 ####Development
 Create an .env file in app root and add your credentials:
 ```yml
-SPOTIFY_LOGIN=[your username]
+SPOTIFY_USERNAME=[your username]
 SPOTIFY_PASSWORD=[your password]
 ```
 Run with ```node lib```
