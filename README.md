@@ -34,6 +34,9 @@ SPOTIFY_PASSWORD=[your password]
 ```
 Run with ```node lib```
 
+#### If run fails with Error: dlopen
+Run ```sudo ln -s /usr/local/opt/libspotify/lib/libspotify.12.1.51.dylib /usr/local/opt/libspotify/lib/libspotify``` to symlink the dylib
+
 ####Production
 Run with ```SPOTIFY_USERNAME=[your username] SPOTIFY_PASSWORD=[your password] node lib```
 
