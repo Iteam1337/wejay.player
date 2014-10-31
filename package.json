@@ -4,6 +4,7 @@
   "description": "The player component of wejay",
   "main": "lib/index.js",
   "scripts": {
+    "start": "node lib/index.js",
     "test": "gulp test"
   },
   "repository": {
@@ -23,7 +24,7 @@
   "homepage": "https://github.com/Iteam1337/wejay.player",
   "dependencies": {
     "dotenv": "^0.4.0",
-    "lodash.bindall": "^2.4.1",
+    "lodash": "^2.4.1",
     "node-spotify": "^0.6.0",
     "q": "^1.0.1",
     "socket.io": "^1.2.0"
@@ -34,6 +35,7 @@
     "gulp-jshint": "^1.8.6",
     "gulp-mocha": "^1.1.1",
     "gulp-plumber": "^0.6.6",
+    "gulp-rimraf": "^0.1.1",
     "jshint-stylish": "^1.0.0",
     "mocha": "^2.0.1",
     "proxyquire": "^1.0.1",
