@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   mocha = require('gulp-mocha'),
   plumber = require('gulp-plumber'),
+  rimraf = require('gulp-rimraf'),
   runSequence = require('run-sequence');
 
 gulp.task('jshint', function () {
@@ -18,6 +19,11 @@ gulp.task('mocha', function () {
 
 gulp.task('test', function () {
   return runSequence('jshint', 'mocha');
+});
+
+gulp.task('clean', function () {
+  return gulp.src(['cache', 'settings'], { read: false })
+    .pipe(rimraf());
 });
 
 gulp.task('watch', function () {

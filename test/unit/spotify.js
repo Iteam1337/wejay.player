@@ -41,7 +41,7 @@ describe('/spotify', function () {
       expect(sp1).to.equal(sp2);
     });
   });
-  describe('authenticate', function () {
+  describe('#login', function () {
     var app, listeners, success, fail;
     beforeEach(function () {
       app = new spotify.Spotify();
@@ -49,7 +49,7 @@ describe('/spotify', function () {
 
       success = sinon.spy();
       fail = sinon.spy();
-      app.authenticate('foo', 'bar').then(success).catch(fail);
+      app.login('foo', 'bar').then(success).catch(fail);
     });
     it('calls nodeSpotifyApp.login with username and password', function () {
       expect(nodeSpotifyApp.login).calledOnce.calledWith('foo', 'bar');
@@ -67,7 +67,7 @@ describe('/spotify', function () {
     it('returns the same promise if several logins before answer', function () {
       var success2 = sinon.spy();
       var fail2 = sinon.spy();
-      app.authenticate('foo', 'bar').then(success2).catch(fail2);
+      app.login('foo', 'bar').then(success2).catch(fail2);
       expect(nodeSpotifyApp.login).calledOnce;
       listeners.ready();
       expect(success).calledOnce;
@@ -80,7 +80,7 @@ describe('/spotify', function () {
       expect(success).calledOnce;
       var success2 = sinon.spy();
       var fail2 = sinon.spy();
-      app.authenticate('foo', 'bar').then(success2).catch(fail2);
+      app.login('foo', 'bar').then(success2).catch(fail2);
       setTimeout(function () {
         expect(success2).calledOnce;
         expect(fail2).not.called;
