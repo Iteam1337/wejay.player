@@ -31,8 +31,8 @@
     "sinon": true,
 
     "console": true,
-    
-    "SpotifyAppProtocolBridge": true,
-    "spotify": true
+    "spotify": true,
+    "io": true,
+    "$": true
   }
 }
