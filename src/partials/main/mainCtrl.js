@@ -18,21 +18,23 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $
   };
 
   $scope.search = function () {
-    var url = 'https://api.spotify.com/v1/search?type=track&q=' + $scope.query;
 
-    $http
-      .get(url)
-      .success(function (data) {
-        var tracks = {};
+    var query = $scope.query;
+    socket.emit('search', query, function (err, result) {
+      if(err) { 
+        console.log(err);
+      }
+      console.log('result ' + query, result);
 
-        data.tracks.items.map(function (track) {
+        result.tracks.map(function (track) {
           track.preview_url = $sce.trustAsResourceUrl(track.preview_url);
 
           tracks[track.id] = track;
         });
-
-        $scope.tracks = tracks;
-      });
+        
+      $scope.tracks = result.tracks;
+      $scope.$apply();
+    });
   };
 
   $scope.play = function (track) {
