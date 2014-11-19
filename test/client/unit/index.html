@@ -77,7 +77,7 @@
   <!-- run mocha after all test are loaded -->
   <script type="text/javascript" charset="utf-8">
     // Only tests run in real browser, injected script run if options.run == true
-    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+    if (window.mochaPhantomJS) {
       if (!Function.prototype.bind) {
         Function.prototype.bind = function(oThis) {
           if (typeof this !== 'function') {
@@ -102,6 +102,8 @@
           return fBound;
         };
       }
+      mochaPhantomJS.run();
+    } else {
       mocha.run();
     }
   </script>

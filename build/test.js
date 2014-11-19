@@ -37,10 +37,6 @@ gulp.task('test:client', function () {
   return runSequence('jshint:client', 'mocha:client');
 });
 
-gulp.task('test', function () {
-  return runSequence('jshint:server', 'mocha:server', 'jshint:client', 'mocha:client');
-});
-
 module.exports = function (cb) {
-  runSequence('jshint', 'mocha', cb);
+  return runSequence('jshint:server', 'mocha:server', 'jshint:client', 'mocha:client');
 };
