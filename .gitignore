@@ -30,8 +30,8 @@ node_modules
 cache
 *.key
 settings
+*.env
 
-bower_components
-dist
+bower_componentsdist
 src/templates.js
 src/css/app.css
