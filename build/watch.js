@@ -6,8 +6,9 @@ module.exports = function () {
 
   gulp.watch(['src/**/*.js', 'test/client/**/*.js', '!src/templates.js'], ['test:client']).on('change', livereload.changed);
   gulp.watch(['test/**/*.html'], ['test']).on('change', livereload.changed);
-  gulp.watch(['src/**/*.html', 'src/css/main.css', 'src/templates.js', 'src/images/**/']).on('change', livereload.changed);
+  gulp.watch(['src/css/main.css', 'src/templates.js', 'src/images/**/']).on('change', livereload.changed);
   gulp.watch(['src/**/*.less'], ['less']);
+  gulp.watch(['src/**/*.html', '!src/index.html'], ['templates']);
 
 
   gulp.watch(['lib/**/*.js', 'test/server/**/*.js'], ['test:server']);
