@@ -19,11 +19,11 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http) {
 
   $scope.search = function () {
     var url = 'https://api.spotify.com/v1/search?type=track&q=' + $scope.query;
-    
+
     $http
       .get(url)
       .success(function (data) {
-        console.log(data);
+        $scope.tracks = data.tracks.items;
       });
   };
 
