@@ -26,13 +26,15 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $
       }
       console.log('result ' + query, result);
 
-        result.tracks.map(function (track) {
-          track.preview_url = $sce.trustAsResourceUrl(track.preview_url);
+      var tracks = [];
 
-          tracks[track.id] = track;
-        });
-        
-      $scope.tracks = result.tracks;
+      result.tracks.map(function (track) {
+        track.preview_url = $sce.trustAsResourceUrl(track.link);
+
+        tracks.push(track);
+      });
+
+      $scope.tracks = tracks;
       $scope.$apply();
     });
   };

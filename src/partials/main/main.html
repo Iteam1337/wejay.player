@@ -9,8 +9,8 @@
   </div>
 
   <ul>
-    <li ng-repeat="track in tracks track by track.id" ng-click="play(track)">
-      <div class="track__preview" ng-click="preview(track.id)">&#9654;</div>
+    <li ng-repeat="track in tracks track by track.link" ng-click="play(track)">
+      <div class="track__preview" ng-click="preview(track.link)">&#9654;</div>
       {{ track.artists[0].name }} - {{ track.name }} ({{ track.album.name }})
     </li>
   </ul>
