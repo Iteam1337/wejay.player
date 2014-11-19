@@ -17,6 +17,7 @@ describe('spotify/player', function () {
       createFromLink: sinon.stub().returns(track),
       player: {
         play: sinon.stub(),
+        resume: sinon.stub(),
         currentSecond: 0
       }
     };
@@ -41,17 +42,17 @@ describe('spotify/player', function () {
       player.play({uri:'foo'});
       expect(player.playing).to.be.true;
     });
-    it('plays currentTrack if it exists and no uri is passed in', function () {
+    it('resumes currentTrack if it exists and no uri is passed in', function () {
       player.currentPlayerTrack = track;
       player.play();
       expect(spotify.createFromLink).not.called;
-      expect(spotify.player.play).calledOnce.calledWith(track);
+      expect(spotify.player.resume).calledOnce;
     });
-    it('emits play event with the current track', function () {
+    it('emits play event with the current track (not playerTrack)', function () {
       var listener = sinon.spy();
       player.on('play', listener);
       player.play({uri:'foo'});
-      expect(listener).calledOnce.calledWith(track);
+      expect(listener).calledOnce.calledWith({uri:'foo'});
     });
     it('emits progress events', function () {
       var listener = sinon.spy();
