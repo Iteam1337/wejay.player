@@ -33,6 +33,8 @@
     "console": true,
     "spotify": true,
     "io": true,
-    "$": true
+    "$": true,
+    "angular": true,
+    "inject": true
   }
 }

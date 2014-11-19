@@ -32,3 +32,6 @@ cache
 settings
 
 bower_components
+dist
+src/templates.js
+src/css/app.css

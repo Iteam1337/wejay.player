@@ -14,10 +14,10 @@ var gulp = require('gulp'),
 gulp.task('templates', function () {
   return gulp.src(['src/partials/**/*.html', 'src/directives/**/*.html'])
     .pipe(templateCache({
-      module: 'spotify-web-app',
+      module: 'wejay.player',
       base: process.cwd() + '/src'
     }))
-    .pipe(gulp.dest('temp'));
+    .pipe(gulp.dest('src'));
 });
 
 function removeScripts($) {
@@ -38,16 +38,13 @@ function concatjs($) {
     .pipe(gulp.dest('dist'));
 }
 
-function concatcss($) {
-  var styles = $('link[rel="stylesheet/less"]')
-    .map(function (ix, link) { return $(link).attr('href'); })
-    .get();
-  return gulp.src(styles)
+gulp.task('less', function () {
+  return gulp.src('src/css/main.less')
     .pipe(sourcemaps.init())
     .pipe(less({compress:true}))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist'));
-}
+    .pipe(gulp.dest('src/css'));
+  });
 
 function cleanhtml($) {
   $('script').remove();
@@ -67,7 +64,7 @@ gulp.task('parseAssets', function () {
   return gulp.src('src/index.html')
     .pipe(cheerio(function ($, done) {
       removeScripts($)
-      q.all([concatjs($), concatcss($)])
+      concatjs($)
         .then(q(cleanhtml($)))
         .then(function () { done(); })
         .catch(done);
