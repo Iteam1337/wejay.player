@@ -27,4 +27,11 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http) {
       });
   };
 
+  $scope.play = function (track) {
+    socket.emit('play', track.uri, function (err, result) {
+      if(err) { console.error(err); }
+      else { console.log(result); }
+    });
+  };
+
 });
