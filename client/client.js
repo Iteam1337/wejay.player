@@ -27,13 +27,13 @@
 
     var q = encodeURI($('input.search').val().replace(' ', '+'));
 
-    socket.emit('search', q, function(err, result) {
+    socket.emit('search', q, function (err, result) {
+      console.log('search callback');
       if(err) { 
-        console.error(err); 
-      } else {
-        console.log(result);
+        console.log(err);
       }
-
+      console.log('result', result);
+      
     });
 
   //   $.get('https://api.spotify.com/v1/search?type=track&q=' + q)

@@ -1,16 +1,17 @@
 <div ng-controller="MainCtrl">
   <input type="text" placeholder="username" ng-model="username">
   <input type="password" placeholder="password" ng-model="password">
-  <div ng-click="login()">Login</div>
+  <button ng-click="login()">Login</button>
   
   <div class="search">
     <input type="text" ng-model="query">
-    <div class="btn" ng-click="search()">Search</div>
+    <button class="btn" ng-click="search()">Search</button>
   </div>
 
   <ul>
-    <li ng-repeat="track in tracks">
-      <a ng-click="play(track)">{{ track.artists[0].name }} - {{ track.name }}</a>
+    <li ng-repeat="track in tracks track by track.link" ng-click="play(track)">
+      <div class="track__preview" ng-click="preview(track.link)">&#9654;</div>
+      <div class="track__play" ng-click="play(track)">{{ track.artists[0].name }} - {{ track.name }} ({{ track.album.name }})</div>
     </li>
   </ul>
 </div>
