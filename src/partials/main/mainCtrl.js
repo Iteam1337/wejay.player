@@ -1,4 +1,4 @@
-angular.module('wejay.player').controller('MainCtrl', function ($scope, $http) {
+angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $sce) {
   var socket = io('http://localhost:3000');
 
   socket.on('connect', function () {
@@ -23,8 +23,31 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http) {
     $http
       .get(url)
       .success(function (data) {
-        $scope.tracks = data.tracks.items;
+        var tracks = {};
+
+        data.tracks.items.map(function (track) {
+          track.preview_url = $sce.trustAsResourceUrl(track.preview_url);
+
+          tracks[track.id] = track;
+        });
+
+        $scope.tracks = tracks;
       });
+  };
+
+  $scope.play = function (id) {
+    var audio = document.getElementById('audio');
+    if (audio) {
+      audio.outerHTML = '';
+    }
+
+    var audio = document.createElement('audio');
+    audio.setAttribute('id', 'audio');
+    audio.src = $scope.tracks[id].preview_url;
+
+    document.body.appendChild(audio);
+
+    document.getElementById('audio').play();
   };
 
 });

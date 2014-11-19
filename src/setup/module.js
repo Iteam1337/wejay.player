@@ -1,1 +1,1 @@
-angular.module('wejay.player', ['ui.router']);
+angular.module('wejay.player', ['ui.router', 'ngSanitize']);
