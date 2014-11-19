@@ -1,3 +1,10 @@
 <div ng-controller="MainCtrl">
-
+  <input type="text" placeholder="username" ng-model="username">
+  <input type="password" placeholder="password" ng-model="password">
+  <div ng-click="login()">Login</div>
+  
+  <div class="search">
+    <input type="text" ng-model="query">
+    <div class="btn" ng-click="search()">Search</div>
+  </div>
 </div>

@@ -5,5 +5,5 @@ module.exports = function (cb) {
   var app = connect();
   app.use(serveStatic('src', {'index': ['index.html']}));
   app.use(serveStatic('./', {}));
-  app.listen(3000, cb);
+  app.listen(9001, cb);
 };
