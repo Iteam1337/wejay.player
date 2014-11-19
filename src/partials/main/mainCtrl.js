@@ -44,7 +44,7 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $
       if(err) { console.error(err); }
       else { console.log(result); }
     });
-  }
+  };
 
   $scope.preview = function (id) {
     var audio = document.getElementById('audio');
