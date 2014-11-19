@@ -1,4 +1,4 @@
-angular.module('spotify-web-app').run(function ($rootScope) {
+angular.module('wejay.player').run(function ($rootScope) {
   $rootScope.safeApply = function (fn) {
     var phase = $rootScope.$$phase;
     if (phase === '$apply' || phase === '$digest') {
