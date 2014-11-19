@@ -2,7 +2,7 @@ var io;
 
 describe('/partials/main/MainCtrl', function () {
 
-  var scope, ctrl;
+  var scope, ctrl, httpBackend;
 
   beforeEach(function () {
     module('wejay.player');
@@ -12,18 +12,21 @@ describe('/partials/main/MainCtrl', function () {
       emit: sinon.spy()
     });
 
-    inject(function ($rootScope, $controller) {
+    inject(function ($rootScope, $controller, $httpBackend) {
       scope = $rootScope.$new();
+
+      httpBackend = $httpBackend;
+
       ctrl = $controller('MainCtrl', {$scope: scope});
     });
   });
 
-  describe("#login", function() {
-    it("should be a function", function() {
+  describe('#login', function() {
+    it('should be a function', function() {
       expect(scope.login).to.be.a('function');
     });
 
-    it("should emit a login message to socket", function() {
+    it('should emit a login message to socket', function() {
       scope.login();
 
       console.log(io);
@@ -32,9 +35,25 @@ describe('/partials/main/MainCtrl', function () {
     });
   });
 
-  describe("#search", function() {
-    it("should be a function", function() {
+  describe('#search', function() {
+    it('should be a function', function() {
       expect(scope.search).to.be.a('function');
+    });
+
+    it('should get the results of the given query', function() {
+      scope.query = 'metallica';
+
+      scope.search();
+
+      var tracks = { tracks: { items: [ { } ] } };
+
+      httpBackend
+        .whenGET('https://api.spotify.com/v1/search?type=track&q=metallica')
+        .respond(200, tracks);
+
+      httpBackend.flush();
+
+      expect(scope.tracks).to.eql(tracks.tracks.items);
     });
   });
 });

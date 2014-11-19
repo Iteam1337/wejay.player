@@ -24,24 +24,35 @@
   });
 
   $('button.search').click(function () {
+
     var q = encodeURI($('input.search').val().replace(' ', '+'));
-    $.get('https://api.spotify.com/v1/search?type=track&q=' + q)
-      .then(function (result) {
+
+    socket.emit('search', q, function(err, result) {
+      if(err) { 
+        console.error(err); 
+      } else {
         console.log(result);
+      }
 
-        var html = result.tracks.items.map(function (track) {
-          tracks[track.id] = track;
-          return '<li><a href="#" class="track" data-id="' + track.id + '">' +
-            track.name + ' (' + track.artists[0].name +
-            ')</a></li>';
-        });
-        $('.searchresults').html(html);
+    });
 
-        $('.track').click(function () {
-          var track = tracks[$(this).data('id')];
-          socket.emit('play', track);
-        });
-      });
+  //   $.get('https://api.spotify.com/v1/search?type=track&q=' + q)
+  //     .then(function (result) {
+  //       console.log(result);
+
+  //       var html = result.tracks.items.map(function (track) {
+  //         tracks[track.id] = track;
+  //         return '<li><a href="#" class="track" data-id="' + track.id + '">' +
+  //           track.name + ' (' + track.artists[0].name +
+  //           ')</a></li>';
+  //       });
+  //       $('.searchresults').html(html);
+
+  //       $('.track').click(function () {
+  //         var track = tracks[$(this).data('id')];
+  //         socket.emit('play', track);
+  //       });
+  //     });
   });
 
 })();

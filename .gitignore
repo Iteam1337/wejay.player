@@ -30,6 +30,7 @@ node_modules
 cache
 *.key
 settings
+*.env
 
 bower_components
 dist
