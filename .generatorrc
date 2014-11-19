@@ -1,0 +1,8 @@
+{
+  "module": "wejay.player",
+  "sourceFolder": "src",
+  "testFolder": "test/client",
+  "templatesFolder": "templates",
+  "buildFolder": "dist",
+  "cssPrecompiler": "less"
+}

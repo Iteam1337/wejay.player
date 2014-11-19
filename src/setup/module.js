@@ -1,0 +1,1 @@
+angular.module('spotify-web-app', ['ui.router']);
