@@ -1,0 +1,11 @@
+<div ng-controller="CurrentTrackCtrl as ctrl" class="track">
+  <div class="trackName">{{track.name}}</div>
+  <div class="artistName">{{track.artist}}</div>
+  <div class="albumName">{{track.album.name}}</div>
+  <div class="albumArt"><img ng-src="{{track.image}}" /></div>
+  <div class="progress"><input type="range" min="0" max="{{progress.duration}}" ng-model="progress.elapsed" disabled /> {{progress.elapsed}} / {{progress.duration}}</div>
+  <div class="controls">
+    <button ng-hide="playing" ng-click="ctrl.play()">&gt;</button>
+    <button ng-show="playing" ng-click="ctrl.pause()">||</button>
+  </div>
+</div>

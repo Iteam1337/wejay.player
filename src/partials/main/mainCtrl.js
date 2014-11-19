@@ -1,10 +1,4 @@
-angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $sce) {
-  var socket = io('http://localhost:3000');
-
-  socket.on('connect', function () {
-    console.log('connected');
-  });
-
+angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $sce, socket) {
   $scope.login = function () {
     socket.emit('login', $scope.username, $scope.password, function (err, result) {
       if (err) {
@@ -26,21 +20,18 @@ angular.module('wejay.player').controller('MainCtrl', function ($scope, $http, $
       }
       console.log('result ' + query, result);
 
-      var tracks = [];
-
-      result.tracks.map(function (track) {
+      $scope.tracks = result.items.map(function (track) {
         track.preview_url = $sce.trustAsResourceUrl(track.link);
 
-        tracks.push(track);
+        return track;
       });
 
-      $scope.tracks = tracks;
       $scope.$apply();
     });
   };
 
   $scope.play = function (track) {
-    socket.emit('play', track.uri, function (err, result) {
+    socket.emit('play', track, function (err, result) {
       if(err) { console.error(err); }
       else { console.log(result); }
     });
